@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
@@ -26,8 +27,9 @@ function App() {
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
         </Routes>
+        {/* Navbar should be in Router cz we're gonna use some hooks like useNavigate */}
+        <Navbar />
       </Router>
-      {/* Navbar */}
     </>
   );
 }
