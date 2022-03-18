@@ -3,6 +3,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
@@ -30,6 +32,19 @@ function App() {
         {/* Navbar should be in Router cz we're gonna use some hooks like useNavigate */}
         <Navbar />
       </Router>
+
+      {/* look docs for customization */}
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

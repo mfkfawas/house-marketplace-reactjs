@@ -11,6 +11,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 
+import { toast } from 'react-toastify';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -96,10 +97,9 @@ const SignUp = () => {
 
             navigate('/');
           } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            console.log(errorCode, errorMessage);
+            toast.error(
+              'Something wrong with user Registration'
+            );
           } finally {
             setSubmitting(false);
             resetForm();

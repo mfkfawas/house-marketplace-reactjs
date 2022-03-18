@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 
+import { toast } from 'react-toastify';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -55,9 +56,7 @@ const SignIn = () => {
               navigate('/profile');
             }
           } catch (error) {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            toast.error('Bad user credentials');
           } finally {
             setSubmitting(false);
             resetForm();
