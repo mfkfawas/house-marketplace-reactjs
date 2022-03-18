@@ -5,6 +5,12 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+import {
+  setDoc,
+  doc,
+  serverTimestamp,
+} from 'firebase/firestore';
+
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -48,25 +54,45 @@ const SignUp = () => {
           passwordConfirm: '',
         }}
         validationSchema={validate}
-        onSubmit={async (data, { setSubmitting, resetForm }) => {
+        onSubmit={async (
+          formData,
+          { setSubmitting, resetForm }
+        ) => {
           setSubmitting(true);
 
           try {
+            // REGISTERING USER WITH FIREBASE
             const auth = getAuth();
 
             const userCredential =
               await createUserWithEmailAndPassword(
                 auth,
-                data.email,
-                data.password
+                formData.email,
+                formData.password
               );
 
             //we can get the user from the userCredential
             const user = userCredential.user;
 
             updateProfile(auth.currentUser, {
-              displayName: data.name,
+              displayName: formData.name,
             });
+
+            //SAVING USER TO FIRESTORE
+            const formDataCopy = { ...formData };
+
+            //dont want pwd to get submitted to DB
+            delete formDataCopy.password;
+            delete formDataCopy.passwordConfirm;
+
+            formDataCopy.timestamp = serverTimestamp();
+
+            //'users' - name of the collection
+            //setDoc() will update the DB by adding the user to users collection.
+            await setDoc(
+              doc(db, 'users', user.uid),
+              formDataCopy
+            );
 
             navigate('/');
           } catch (error) {
@@ -164,6 +190,7 @@ const SignUp = () => {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete='on'
                   />
 
                   <img
@@ -211,6 +238,7 @@ const SignUp = () => {
                     value={values.passwordConfirm}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete='on'
                   />
 
                   <img

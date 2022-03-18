@@ -92,6 +92,7 @@ const SignIn = () => {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    autoComplete='on'
                   />
 
                   <img
