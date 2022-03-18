@@ -6,6 +6,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
@@ -25,7 +26,12 @@ function App() {
             path='/forgot-password'
             element={<ForgotPassword />}
           />
-          <Route path='/profile' element={<Profile />} />
+
+          {/* Protected Route */}
+          <Route path='/profile' element={<PrivateRoute />}>
+            <Route path='/profile' element={<Profile />} />
+          </Route>
+
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
         </Routes>
