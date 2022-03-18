@@ -14,6 +14,18 @@ body {
   box-sizing: border-box;
 }
 
+.error-warning {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  padding: 0.4rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-top: -1.5rem;
+  position: absolute;
+  top: 5rem;
+}
+
 a {
   text-decoration: none;
   display: block;
@@ -185,22 +197,25 @@ button {
 }
 
 .nameInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5% center no-repeat;
+  margin-bottom: 3.4rem;
+  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5%
+    center no-repeat;
 }
 
 .emailInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
+  margin-bottom: 3.4rem;
+  background: url('./assets/svg/personIcon.svg') #ffffff 2.5%
+    center no-repeat;
 }
 
-.passwordInputDiv {
+.input-div {
   position: relative;
 }
 
 .passwordInput {
-  margin-bottom: 2rem;
-  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
+  margin-bottom: 3.4rem;
+  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5%
+    center no-repeat;
 }
 
 .showPassword {
