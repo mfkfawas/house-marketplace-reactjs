@@ -61,7 +61,7 @@ const SignUp = () => {
           setSubmitting(true);
 
           try {
-            // REGISTERING USER WITH FIREBASE
+            // 1) REGISTERING USER WITH FIREBASE(get the uid)
             const auth = getAuth();
 
             const userCredential =
@@ -78,7 +78,7 @@ const SignUp = () => {
               displayName: formData.name,
             });
 
-            //SAVING USER TO FIRESTORE
+            // 2) SAVING USER TO FIRESTORE(for corr uid)
             const formDataCopy = { ...formData };
 
             //dont want pwd to get submitted to DB

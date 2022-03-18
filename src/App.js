@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -23,7 +23,7 @@ function App() {
             path='/forgot-password'
             element={<ForgotPassword />}
           />
-          <Route path='/profile' element={<SignIn />} />
+          <Route path='/profile' element={<Profile />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/sign-in' element={<SignIn />} />
         </Routes>

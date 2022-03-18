@@ -1,4 +1,10 @@
 import { useState } from 'react';
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -6,9 +12,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import { async } from '@firebase/util';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const validate = Yup.object({
     email: Yup.string()
@@ -19,8 +28,6 @@ const SignIn = () => {
       .required('Password is required.'),
   });
 
-  // const navigate = useNavigate();
-
   return (
     <>
       <Formik
@@ -29,12 +36,32 @@ const SignIn = () => {
           password: '',
         }}
         validationSchema={validate}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
+        onSubmit={async (
+          formData,
+          { setSubmitting, resetForm }
+        ) => {
           setSubmitting(true);
+          try {
+            const auth = getAuth();
 
-          setSubmitting(false);
+            const userCredential =
+              await signInWithEmailAndPassword(
+                auth,
+                formData.email,
+                formData.password
+              );
 
-          resetForm();
+            if (userCredential.user) {
+              navigate('/profile');
+            }
+          } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+          } finally {
+            setSubmitting(false);
+            resetForm();
+          }
         }}
       >
         {({
@@ -132,6 +159,7 @@ const SignIn = () => {
                 <div className='signInBar'>
                   <p className='signInText'>Sign In</p>
                   <button
+                    type='submit'
                     className='signInButton'
                     disabled={isSubmitting}
                   >
