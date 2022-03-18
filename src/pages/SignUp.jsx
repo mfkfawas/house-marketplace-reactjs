@@ -1,9 +1,16 @@
 import { useState } from 'react';
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
+import { db } from '../firebase.config';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
@@ -29,7 +36,7 @@ const SignUp = () => {
       .required('Confirm password is required'),
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -41,12 +48,36 @@ const SignUp = () => {
           passwordConfirm: '',
         }}
         validationSchema={validate}
-        onSubmit={(data, { setSubmitting, resetForm }) => {
+        onSubmit={async (data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
-          setSubmitting(false);
+          try {
+            const auth = getAuth();
 
-          resetForm();
+            const userCredential =
+              await createUserWithEmailAndPassword(
+                auth,
+                data.email,
+                data.password
+              );
+
+            //we can get the user from the userCredential
+            const user = userCredential.user;
+
+            updateProfile(auth.currentUser, {
+              displayName: data.name,
+            });
+
+            navigate('/');
+          } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            console.log(errorCode, errorMessage);
+          } finally {
+            setSubmitting(false);
+            resetForm();
+          }
         }}
       >
         {({
@@ -227,6 +258,7 @@ const SignUp = () => {
                   <p className='signUpText'>Sign Up</p>
                   <button
                     className='signUpButton'
+                    type='submit'
                     disabled={isSubmitting}
                   >
                     <ArrowRightIcon
