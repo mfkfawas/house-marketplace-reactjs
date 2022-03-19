@@ -11,6 +11,7 @@ import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
+import OAuth from '../components/OAuth';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 
@@ -55,15 +56,7 @@ const SignIn = () => {
               navigate('/profile');
             }
           } catch (error) {
-            toast.error('Wrong Credentials', {
-              position: 'top-center',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            toast.error('Wrong Credentials');
           } finally {
             setSubmitting(false);
             resetForm();
@@ -179,7 +172,7 @@ const SignIn = () => {
               </form>
             </AnimatePresence>
 
-            {/* <OAuth /> */}
+            <OAuth />
 
             <Link to='/sign-up' className='registerLink'>
               Sign Up Instead

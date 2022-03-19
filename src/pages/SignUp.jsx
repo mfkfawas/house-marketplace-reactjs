@@ -17,6 +17,7 @@ import * as Yup from 'yup';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
+import OAuth from '../components/OAuth';
 import { db } from '../firebase.config';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
@@ -299,7 +300,7 @@ const SignUp = () => {
               </form>
             </AnimatePresence>
 
-            {/* <OAuth /> */}
+            <OAuth />
 
             <Link to='/sign-in' className='registerLink'>
               Sign In Instead

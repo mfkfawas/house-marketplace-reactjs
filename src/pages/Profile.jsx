@@ -44,15 +44,7 @@ const Profile = () => {
         //we r no updating email coz firebase auth doesnt allow us to change email
       }
     } catch (error) {
-      toast.error('Could not update profile details!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error('Could not update profile details!');
     }
   };
 

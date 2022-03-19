@@ -40,7 +40,17 @@ function App() {
       </Router>
 
       {/* look docs for customization */}
-      <ToastContainer />
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }
