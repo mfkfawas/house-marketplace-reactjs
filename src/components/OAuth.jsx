@@ -14,7 +14,6 @@ import { toast } from 'react-toastify';
 
 import { db } from '../firebase.config';
 import googleIcon from '../assets/svg/googleIcon.svg';
-import { async } from '@firebase/util';
 
 const OAuth = () => {
   const navigate = useNavigate();

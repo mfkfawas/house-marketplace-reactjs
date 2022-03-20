@@ -36,11 +36,13 @@ const ForgotPassword = () => {
               await sendPasswordResetEmail(auth, formData.email);
               toast.success('Email was sent');
             } catch (error) {
-              toast.error('Could not send reset email');
+              toast.error(
+                'Could not send reset password link to email'
+              );
+            } finally {
+              setSubmitting(false);
+              resetForm('');
             }
-
-            setSubmitting(false);
-            resetForm('');
           }}
         >
           {({
