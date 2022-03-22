@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 
 import { db } from '../firebase.config';
 import Spinner from '../components/Spinner';
+import ListingItem from '../components/ListingItem';
 
 const Category = () => {
   const [listings, setListings] = useState(null);
@@ -72,7 +73,11 @@ const Category = () => {
           <main>
             <ul className='categoryListings'>
               {listings.map(listing => (
-                <h3 key={listing.id}>{listing.data.name}</h3>
+                <ListingItem
+                  key={listing.id}
+                  id={listing.id}
+                  listing={listing.data}
+                />
               ))}
             </ul>
           </main>

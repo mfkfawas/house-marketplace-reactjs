@@ -26,6 +26,10 @@ body {
   top: 5rem;
 }
 
+.margin-1 {
+  margin: 3rem 1rem;
+}
+
 a {
   text-decoration: none;
   display: block;

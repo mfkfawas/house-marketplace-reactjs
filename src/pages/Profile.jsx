@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { getAuth, updateProfile } from 'firebase/auth';
 import { updateDoc, doc } from 'firebase/firestore';
@@ -6,6 +6,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { db } from '../firebase.config';
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
+import homeIcon from '../assets/svg/homeIcon.svg';
 
 const Profile = () => {
   //firebase store auth details of user in indexDB(not regular localStorage), we dont want to worry about refreshing or
@@ -56,7 +58,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='profile'>
+    <main className='profile'>
       <header className='profileHeader'>
         <p className='pageHeader'>My Profile</p>
         <button
@@ -110,7 +112,13 @@ const Profile = () => {
           />
         </form>
       </div>
-    </div>
+
+      <Link to='/create-listing' className='createListing'>
+        <img src={homeIcon} alt='home' />
+        <p>Sell or rent your home</p>
+        <img src={arrowRight} alt='arrow right' />
+      </Link>
+    </main>
   );
 };
 
