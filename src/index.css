@@ -202,14 +202,12 @@ button {
 
 .nameInput {
   margin-bottom: 3.4rem;
-  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5%
-    center no-repeat;
+  background: url('./assets/svg/badgeIcon.svg') #ffffff 2.5% center no-repeat;
 }
 
 .emailInput {
   margin-bottom: 3.4rem;
-  background: url('./assets/svg/personIcon.svg') #ffffff 2.5%
-    center no-repeat;
+  background: url('./assets/svg/personIcon.svg') #ffffff 2.5% center no-repeat;
 }
 
 .input-div {
@@ -218,8 +216,7 @@ button {
 
 .passwordInput {
   margin-bottom: 3.4rem;
-  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5%
-    center no-repeat;
+  background: url('./assets/svg/lockIcon.svg') #ffffff 2.5% center no-repeat;
 }
 
 .showPassword {

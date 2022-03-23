@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg';
 import bedIcon from '../assets/svg/bedIcon.svg';
 import bathtubIcon from '../assets/svg/bathtubIcon.svg';
+import formatMoney from './currencyFormat';
 
 const ListingItem = ({ id, listing, onDelete }) => {
   return (
@@ -13,10 +14,16 @@ const ListingItem = ({ id, listing, onDelete }) => {
           <p className='categoryListingLocation'>{listing.location}</p>
           <p className='categoryListingName'>{listing.name}</p>
           <p className='categoryListingPrice'>
-            $
+            {/* the reg ex below format acc to thousands */}
+            {/* $
             {listing.offer
               ? listing.discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-              : listing.regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              : listing.regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} */}
+
+            {listing.offer
+              ? formatMoney(listing.discountedPrice)
+              : formatMoney(listing.regularPrice)}
+
             {listing.type === 'rent' && ' / month'}
           </p>
           <div className='categoryListingInfoDiv'>

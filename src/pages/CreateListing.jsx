@@ -29,7 +29,7 @@ const initialFormState = {
 };
 
 function CreateListing() {
-  const [geolocationEnabled] = useState(true);
+  const [geolocationEnabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
 
