@@ -70,14 +70,12 @@ function Slider() {
                 className='swiperSlideDiv'
               >
                 <p className='swiperSlideText'>{data.name}</p>
-                <p className='swiperSlidePrice'>
-                  {/* {formatMoney(Number(data.discountedPrice)) ??
-                    formatMoney(Number(data.regularPrice))}{' '} */}
-                  $
-                  {data.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ??
-                    data.regularPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                  {data.type === 'rent' && ' / month'}
-                </p>
+                {/* <p className='swiperSlidePrice'> */}
+                {/* $ */}
+                {/* {data.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ?? */}
+                {/* data.regularPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '} */}
+                {/* {data.type === 'rent' && ' / month'} */}
+                {/* </p> */}
               </div>
             </SwiperSlide>
           ))}
