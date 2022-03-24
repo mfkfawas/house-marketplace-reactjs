@@ -26,7 +26,7 @@ const Category = () => {
           listingsCollection,
           where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
-          limit(1)
+          limit(10)
         );
 
         //execute query
@@ -68,7 +68,7 @@ const Category = () => {
         where('type', '==', params.categoryName),
         orderBy('timestamp', 'desc'),
         startAfter(lastFetchedListing), //To fetch next 10.
-        limit(1)
+        limit(10)
       );
 
       // Execute query
