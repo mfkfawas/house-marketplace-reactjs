@@ -31,6 +31,7 @@ function Slider() {
       });
 
       setListings(listings);
+
       setLoading(false);
     };
 
@@ -70,8 +71,12 @@ function Slider() {
               >
                 <p className='swiperSlideText'>{data.name}</p>
                 <p className='swiperSlidePrice'>
-                  {formatMoney(+data.discountedPrice) ?? formatMoney(+data.regularPrice)}{' '}
-                  {data.type === 'rent' && '/ month'}
+                  {/* {formatMoney(Number(data.discountedPrice)) ??
+                    formatMoney(Number(data.regularPrice))}{' '} */}
+                  $
+                  {data.discountedPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ??
+                    data.regularPrice?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                  {data.type === 'rent' && ' / month'}
                 </p>
               </div>
             </SwiperSlide>
