@@ -26,7 +26,7 @@ const Category = () => {
           listingsCollection,
           where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
-          limit(10)
+          limit(1)
         );
 
         //execute query
@@ -68,14 +68,28 @@ const Category = () => {
         where('type', '==', params.categoryName),
         orderBy('timestamp', 'desc'),
         startAfter(lastFetchedListing), //To fetch next 10.
-        limit(10)
+        limit(1)
       );
 
       // Execute query
       const querySnap = await getDocs(q);
 
-      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
-      setLastFetchedListing(lastVisible);
+      //To get the last doc of each fetching(for pagination)
+      const lastFetchedDoc = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedListing(lastFetchedDoc);
+
+      // Create a query to get the last doc of our collection
+      // const queryOfLastDocOfCollection = query(listingsRef, orderBy('timestamp', 'desc'), limit(1));
+      // const querySnapOfLastDoc = await getDocs(queryOfLastDocOfCollection);
+      // const lastDocOfCollection = querySnapOfLastDoc.docs[0];
+
+      // console.log(lastDocOfCollection.id, lastFetchedDoc.id, lastFetchedListing);
+
+      // if (lastDocOfCollection.id === lastFetchedDoc.id) {
+      //   setLastFetchedListing(null);
+      // } else {
+      //   setLastFetchedListing(lastFetchedDoc);
+      // }
 
       const listings = [];
 
